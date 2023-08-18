@@ -28,25 +28,31 @@ async function main() {
   // create dummy articles
   const post1 = await prisma.article.upsert({
     where: { title: 'Prisma Adds Support for MongoDB' },
-    update: {},
+    update: {
+      authorId: user1.id,
+    },
     create: {
       title: 'Prisma Adds Support for MongoDB',
       body: 'Support for MongoDB has been one of the most requested features since the initial release of...',
       description:
         "We are excited to share that today's Prisma ORM release adds stable support for MongoDB!",
       published: false,
+      authorId: user1.id,
     },
   });
 
   const post2 = await prisma.article.upsert({
     where: { title: "What's new in Prisma? (Q1/22)" },
-    update: {},
+    update: {
+      authorId: user2.id,
+    },
     create: {
       title: "What's new in Prisma? (Q1/22)",
       body: 'Our engineers have been working hard, issuing new releases with many improvements...',
       description:
         'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
       published: true,
+      authorId: user2.id,
     },
   });
 
